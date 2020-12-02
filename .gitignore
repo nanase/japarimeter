@@ -7,7 +7,6 @@
 EWARM/
 Drivers/
 .mxproject
-startup_*.s
 *_FLASH.ld
 
 # Windows image file caches
