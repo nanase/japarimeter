@@ -3,6 +3,7 @@
 #include "bmp280.h"
 #include "ssd1306.h"
 #include "fonts.h"
+#include "page.hpp"
 
 #include "flash.h"
 #include "board_config.h"
@@ -12,6 +13,8 @@ char buf[32];
 const uint8_t contrasts[5] = {0x01, 0x10, 0x20, 0x40, 0x8f};
 uint8_t contrast_index = 4;
 uint8_t page_index = 0;
+uint8_t old_page_index = 0;
+Page *page;
 float pressure, temperature, humidity;
 
 volatile uint32_t button0_tick = 0;
@@ -34,10 +37,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
   if (GPIO_Pin == BUTTON0_Pin)
   {
-    if (tick - button0_tick >= 200)
+    if (tick - button0_tick >= 100)
     {
-      if (!state && page_index < 1)
+      if (!state /*&& page_index < 1*/)
+      {
         page_index++;
+        page_index = page_index % 2;
+      }
 
       button0_state = state;
     }
@@ -47,10 +53,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
   if (GPIO_Pin == BUTTON1_Pin)
   {
-    if (tick - button1_tick >= 200)
+    if (tick - button1_tick >= 100)
     {
-      if (!state && page_index > 0)
+      if (!state /*&& page_index > 0*/)
+      {
         page_index--;
+        page_index = page_index % 2;
+      }
 
       button1_state = state;
     }
@@ -118,100 +127,35 @@ void setup()
 
   ssd1306_fill(ssd1306_black);
   ssd1306_updateScreen();
-}
 
-void draw_page1()
-{
-  ssd1306_fill(ssd1306_black);
-
-  ssd1306_setFillMode(true);
-  ssd1306_setCursor(5, 5);
-  sprintf(buf, "%2d", (int16_t)temperature);
-  ssd1306_writeString(buf, Font_16x26, ssd1306_white);
-
-  ssd1306_setCursor(39, 12);
-  sprintf(buf, "%02d", (int8_t)((temperature - (int16_t)temperature) * 100));
-  ssd1306_writeString(buf, Font_11x18, ssd1306_white);
-
-  ssd1306_setFillMode(true);
-  ssd1306_setCursor(52, 3);
-  ssd1306_writeString("C", Font_7x10, ssd1306_white);
-  ssd1306_setFillMode(false);
-  ssd1306_setCursor(53, 3);
-  ssd1306_writeString("C", Font_7x10, ssd1306_white);
-  ssd1306_setCursor(46, 0);
-  ssd1306_writeString("o", Font_7x10, ssd1306_white);
-
-  ssd1306_setFillMode(false);
-  ssd1306_setCursor(33, 13);
-  ssd1306_writeString(".", Font_11x18, ssd1306_white);
-
-  //
-
-  ssd1306_setFillMode(true);
-  ssd1306_setCursor(64 + 5, 5);
-  sprintf(buf, "%2d", (uint8_t)humidity);
-  ssd1306_writeString(buf, Font_16x26, ssd1306_white);
-
-  ssd1306_setCursor(39 + 64, 12);
-  sprintf(buf, "%02d", (int8_t)((humidity - (int16_t)humidity) * 100));
-  ssd1306_writeString(buf, Font_11x18, ssd1306_white);
-
-  ssd1306_setFillMode(true);
-  ssd1306_setCursor(52 + 64, 3);
-  ssd1306_writeString("%", Font_7x10, ssd1306_white);
-
-  ssd1306_setFillMode(false);
-  ssd1306_setCursor(33 + 64, 13);
-  ssd1306_writeString(".", Font_11x18, ssd1306_white);
-
-  ssd1306_updateScreen();
-}
-
-void draw_page2()
-{
-  float pressure_hpa = pressure / 100.0;
-
-  ssd1306_fill(ssd1306_black);
-
-  ssd1306_setFillMode(true);
-  ssd1306_setCursor(37, 5);
-  sprintf(buf, "%04d", (uint16_t)(pressure_hpa));
-  ssd1306_writeString(buf, Font_16x26, ssd1306_white);
-
-  ssd1306_setFillMode(true);
-  ssd1306_setCursor(103, 12);
-  sprintf(buf, "%02d", (int8_t)((pressure_hpa - (int16_t)pressure_hpa) * 100));
-  ssd1306_writeString(buf, Font_11x18, ssd1306_white);
-
-  ssd1306_setFillMode(true);
-  ssd1306_setCursor(103, 3);
-  ssd1306_writeString("hPa", Font_7x10, ssd1306_white);
-
-  ssd1306_setFillMode(false);
-  ssd1306_setCursor(97, 13);
-  ssd1306_writeString(".", Font_11x18, ssd1306_white);
-
-  ssd1306_updateScreen();
+  page = new TemperatureHumidityPage();
 }
 
 void loop()
 {
   ssd1306_setContrast(contrasts[contrast_index]);
 
-  switch (page_index)
+  if (page_index != old_page_index)
   {
-  case 0:
-    draw_page1();
-    break;
+    switch (page_index)
+    {
+    case 0:
+      page = new TemperatureHumidityPage();
+      break;
 
-  case 1:
-    draw_page2();
-    break;
+    case 1:
+      page = new PressurePage();
+      break;
 
-  default:
-    break;
+    default:
+      break;
+    }
+
+    old_page_index = page_index;
+    page->updateWholeScreen();
   }
+
+  page->update();
 
   HAL_Delay(250);
 }
