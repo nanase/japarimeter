@@ -129,6 +129,7 @@ void setup()
   ssd1306_updateScreen();
 
   page = new TemperatureHumidityPage();
+  page->updateWholeScreen();
 }
 
 void loop()
