@@ -4,24 +4,28 @@
 class Page
 {
 public:
-  virtual void updateWholeScreen() = 0;
-  virtual void update() = 0;
-
   virtual ~Page() {}
+
+  void initialize();
+  void update();
+
+protected:
+  virtual void drawWholeScreen() = 0;
+  virtual void draw() = 0;
 };
 
 class PressurePage : public Page
 {
-public:
-  void updateWholeScreen();
-  void update();
+protected:
+  void drawWholeScreen();
+  void draw();
 };
 
 class TemperatureHumidityPage : public Page
 {
-public:
-  void updateWholeScreen();
-  void update();
+protected:
+  void drawWholeScreen();
+  void draw();
 };
 
 #endif

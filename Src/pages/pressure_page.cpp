@@ -5,10 +5,8 @@
 extern float pressure;
 extern char buf[32];
 
-void PressurePage::updateWholeScreen()
+void PressurePage::drawWholeScreen()
 {
-  ssd1306_fill(ssd1306_black);
-
   ssd1306_setFillMode(true);
   ssd1306_setCursor(103, 3);
   ssd1306_writeString("hPa", Font_7x10, ssd1306_white);
@@ -16,11 +14,9 @@ void PressurePage::updateWholeScreen()
   ssd1306_setFillMode(false);
   ssd1306_setCursor(97, 13);
   ssd1306_writeString(".", Font_11x18, ssd1306_white);
-
-  // ssd1306_updateScreen();
 }
 
-void PressurePage::update()
+void PressurePage::draw()
 {
   float pressure_hpa = pressure / 100.0;
 
@@ -33,6 +29,4 @@ void PressurePage::update()
   ssd1306_setCursor(103, 12);
   sprintf(buf, "%02d", (int8_t)((pressure_hpa - (int16_t)pressure_hpa) * 100));
   ssd1306_writeString(buf, Font_11x18, ssd1306_white);
-
-  ssd1306_updateScreen();
 }

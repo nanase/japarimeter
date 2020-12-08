@@ -129,7 +129,7 @@ void setup()
   ssd1306_updateScreen();
 
   page = new TemperatureHumidityPage();
-  page->updateWholeScreen();
+  page->initialize();
 }
 
 void loop()
@@ -155,10 +155,12 @@ void loop()
     }
 
     old_page_index = page_index;
-    page->updateWholeScreen();
+    page->initialize();
   }
-
-  page->update();
+  else
+  {
+    page->update();
+  }
 
   HAL_Delay(250);
 }
