@@ -6,6 +6,8 @@ class Page
 public:
   virtual void updateWholeScreen() = 0;
   virtual void update() = 0;
+
+  virtual ~Page() {}
 };
 
 class PressurePage : public Page

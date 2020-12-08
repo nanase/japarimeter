@@ -137,6 +137,8 @@ void loop()
 
   if (page_index != old_page_index)
   {
+    delete page;
+
     switch (page_index)
     {
     case 0:
