@@ -124,6 +124,9 @@ void ssd1306_setContrast(uint8_t contrast);
 void ssd1306_displayOn();
 void ssd1306_displayOff();
 
+void ssd1306_writeCompressedImage(const uint8_t *data, uint16_t size);
+void ssd1306_writeCompressedSlideImage(uint8_t slide, const uint8_t *data, uint16_t size);
+
 #ifdef __cplusplus
 }
 #endif
