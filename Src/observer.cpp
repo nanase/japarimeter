@@ -153,9 +153,6 @@ void setup()
   // ssd1306_updateScreen();
   // HAL_Delay(2000);
 
-  ssd1306_fill(ssd1306_black);
-  ssd1306_updateScreen();
-
   page = new HumidityPage();
   page->initialize();
 }
