@@ -15,7 +15,8 @@
 #define fixedHumidityToHumidity(humidity) ((humidity) / 1024.0)
 
 #define validFixedPressure(pressure) (((pressure) <= (BMP280_MAX_PRESSURE)) && ((pressure) >= (BMP280_MIN_PRESSURE)))
-#define validFixedTemperature(temperature) ((temperature) <= BMP280_MAX_TEMPERATURE && (temperature) >= BMP280_MIN_TEMPERATURE)
+#define validFixedTemperature(temperature) \
+  ((temperature) <= BMP280_MAX_TEMPERATURE && (temperature) >= BMP280_MIN_TEMPERATURE)
 #define validFixedHumidity(humidity) ((humidity) <= BMP280_MAX_HUMIDITY && (humidity) >= BMP280_MIN_HUMIDITY)
 
 #endif

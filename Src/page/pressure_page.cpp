@@ -1,13 +1,12 @@
+#include "bmp280_macros.hpp"
+#include "fonts.h"
 #include "page.hpp"
 #include "ssd1306.h"
-#include "fonts.h"
-#include "bmp280_macros.hpp"
 
 extern uint32_t fixed_pressure;
 extern char buf[32];
 
-void PressurePage::drawWholeScreen()
-{
+void PressurePage::drawWholeScreen() {
   ssd1306_setFillMode(true);
   ssd1306_setCursor(103, 3);
   ssd1306_writeString("hPa", Font_7x10, ssd1306_white);
@@ -17,8 +16,7 @@ void PressurePage::drawWholeScreen()
   ssd1306_writeString(".", Font_11x18, ssd1306_white);
 }
 
-void PressurePage::draw()
-{
+void PressurePage::draw() {
   float pressure_hpa = fixedPressureToHectoPa(fixed_pressure);
 
   ssd1306_setFillMode(true);
