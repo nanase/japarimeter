@@ -1,8 +1,9 @@
 #include "page.hpp"
 #include "ssd1306.h"
 #include "fonts.h"
+#include "bmp280_macros.hpp"
 
-extern float pressure;
+extern uint32_t fixed_pressure;
 extern char buf[32];
 
 void PressurePage::drawWholeScreen()
@@ -18,7 +19,7 @@ void PressurePage::drawWholeScreen()
 
 void PressurePage::draw()
 {
-  float pressure_hpa = pressure / 100.0;
+  float pressure_hpa = fixedPressureToHectoPa(fixed_pressure);
 
   ssd1306_setFillMode(true);
   ssd1306_setCursor(37, 5);

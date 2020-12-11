@@ -1,12 +1,13 @@
+#include "bmp280_macros.hpp"
+#include "fonts.h"
 #include "page.hpp"
 #include "ssd1306.h"
-#include "fonts.h"
 
-extern float pressure, temperature, humidity;
+extern int32_t fixed_temperature;
+extern uint32_t fixed_humidity;
 extern char buf[32];
 
-void TemperatureHumidityPage::drawWholeScreen()
-{
+void TemperatureHumidityPage::drawWholeScreen() {
   ssd1306_setFillMode(true);
   ssd1306_setCursor(52, 3);
   ssd1306_writeString("C", Font_7x10, ssd1306_white);
@@ -31,8 +32,10 @@ void TemperatureHumidityPage::drawWholeScreen()
   ssd1306_writeString(".", Font_11x18, ssd1306_white);
 }
 
-void TemperatureHumidityPage::draw()
-{
+void TemperatureHumidityPage::draw() {
+  float temperature = fixedTemperatureToTemperature(fixed_temperature);
+  float humidity    = fixedHumidityToHumidity(fixed_humidity);
+
   ssd1306_setFillMode(true);
   ssd1306_setCursor(5, 5);
   sprintf(buf, "%2d", (int16_t)temperature);
