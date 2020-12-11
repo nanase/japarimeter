@@ -19,6 +19,12 @@ class PressurePage : public Page {
   void draw();
 };
 
+class TemperaturePage : public Page {
+ protected:
+  void drawWholeScreen();
+  void draw();
+};
+
 class HumidityPage : public Page {
  protected:
   void drawWholeScreen();
