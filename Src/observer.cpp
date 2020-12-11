@@ -45,7 +45,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
       if (!state /*&& page_index < 1*/)
       {
         page_index++;
-        page_index = page_index % 2;
+        page_index = (page_index + 3) % 3;
       }
 
       button0_state = state;
@@ -61,7 +61,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
       if (!state /*&& page_index > 0*/)
       {
         page_index--;
-        page_index = page_index % 2;
+        page_index = (page_index + 3) % 3;
       }
 
       button1_state = state;
@@ -156,7 +156,7 @@ void setup()
   ssd1306_fill(ssd1306_black);
   ssd1306_updateScreen();
 
-  page = new TemperatureHumidityPage();
+  page = new HumidityPage();
   page->initialize();
 }
 
@@ -175,6 +175,10 @@ void loop()
       break;
 
     case 1:
+      page = new HumidityPage();
+      break;
+
+    case 2:
       page = new PressurePage();
       break;
 

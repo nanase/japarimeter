@@ -21,6 +21,13 @@ protected:
   void draw();
 };
 
+class HumidityPage : public Page
+{
+protected:
+  void drawWholeScreen();
+  void draw();
+};
+
 class TemperatureHumidityPage : public Page
 {
 protected:
