@@ -1,6 +1,7 @@
 #include "main.h"
 
 #include "bmp280.h"
+#include "bmp280_macros.hpp"
 #include "ssd1306.h"
 #include "fonts.h"
 #include "page.hpp"
@@ -15,7 +16,9 @@ uint8_t contrast_index = 4;
 uint8_t page_index = 0;
 uint8_t old_page_index = 0;
 Page *page;
-float pressure, temperature, humidity;
+int32_t fixed_temperature;
+uint32_t fixed_pressure;
+uint32_t fixed_humidity;
 
 volatile uint32_t button0_tick = 0;
 volatile uint32_t button1_tick = 0;
@@ -26,7 +29,7 @@ extern TIM_HandleTypeDef htim6;
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-  if (!bmp280_read_float(&bmp280, &temperature, &pressure, &humidity))
+  if (!bmp280_read_fixed(&bmp280, &fixed_temperature, &fixed_pressure, &fixed_humidity))
     Error_Handler();
 }
 
@@ -78,14 +81,7 @@ void setup()
   bmp280.params.oversampling_pressure = BMP280_ULTRA_LOW_POWER;
   bmp280.params.oversampling_temperature = BMP280_ULTRA_LOW_POWER;
   bmp280.params.oversampling_humidity = BMP280_ULTRA_LOW_POWER;
-  bmp280.params.standby = BMP280_STANDBY_1000;
-
-  if (!bmp280_init(&bmp280, &bmp280.params))
-  {
-    Error_Handler();
-  }
-
-  HAL_TIM_Base_Start_IT(&htim6);
+  bmp280.params.standby = BMP280_STANDBY_125;
 
   ssd1306_initialize();
   ssd1306_fill(ssd1306_black);
@@ -93,6 +89,38 @@ void setup()
 
   BoardConfig config;
   flash_read(31, 0, &config, sizeof(BoardConfig));
+  uint16_t error = 1;
+
+  do
+  {
+    if (!bmp280_init(&bmp280, &bmp280.params))
+      Error_Handler();
+
+    HAL_Delay(130);
+
+    if (!bmp280_read_fixed(&bmp280, &fixed_temperature, &fixed_pressure, &fixed_humidity))
+      Error_Handler();
+
+    if (fixed_pressure <= 1100 * 25600 && fixed_pressure >= 300 * 25600)
+      break;
+
+    ssd1306_fill(ssd1306_black);
+
+    ssd1306_setFillMode(true);
+    ssd1306_setCursor(0, 0);
+    sprintf(buf, "error %d", error++);
+    ssd1306_writeString(buf, Font_11x18, ssd1306_white);
+    ssd1306_setCursor(0, 18);
+    sprintf(buf, "%ld", fixed_pressure);
+    ssd1306_writeString(buf, Font_7x10, ssd1306_white);
+
+    ssd1306_updateScreen();
+
+    HAL_Delay(1000);
+  } while (1);
+
+  HAL_TIM_Base_Start_IT(&htim6);
+
 
   // if (config.magic_number != 0x7F01CF42)
   // {
