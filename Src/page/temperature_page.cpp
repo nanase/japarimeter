@@ -6,13 +6,13 @@
 extern uint32_t fixed_temperature;
 extern char buf[32];
 
-extern const uint8_t image_temperature_icon[118];
-extern const uint8_t image_temperature_value[2];
+extern const uint8_t image_temperature_icon[60];
+extern const uint8_t image_temperature_value[4];
 
 void TemperaturePage::drawWholeScreen() {
   ssd1306_setFillMode(true);
-  ssd1306_setCursor(4, 4);
-  ssd1306_writeCompressedImage(image_temperature_icon, sizeof(image_temperature_icon));
+  ssd1306_setCursor(12, 4);
+  ssd1306_writeCompressedImageB4(image_temperature_icon, sizeof(image_temperature_icon));
 
   ssd1306_setCursor(116, 11);
   ssd1306_writeString("C", Font_11x18, ssd1306_white);
@@ -38,8 +38,8 @@ void TemperaturePage::draw() {
     temperature_icon_value = 0.0;
 
   ssd1306_setFillMode(true);
-  ssd1306_setCursor(7, 5);
-  ssd1306_writeCompressedSlideImage((uint8_t)(17.0 - 17.0 * (temperature_icon_value / 40.0)), image_temperature_value,
+  ssd1306_setCursor(15, 5);
+  ssd1306_writeCompressedSlideImageB4((uint8_t)(17.0 - 17.0 * (temperature_icon_value / 40.0)), image_temperature_value,
                                     sizeof(image_temperature_value));
 
   if (temperature < 0.0) {

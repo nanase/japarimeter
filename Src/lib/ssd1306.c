@@ -193,19 +193,29 @@ void ssd1306_displayOff() {
   ssd1306_writeCommand(SSD1306_DISPLAYOFF);
 }
 
-void ssd1306_writeCompressedImage(const uint8_t *data, uint16_t size) {
-  SSD1306_COLOR color = ssd1306_black;
-  uint8_t width       = data[0];
-  uint8_t count       = 0;
-  uint8_t x_cur       = 0;
-  uint8_t y_cur       = 0;
+void ssd1306_writeCompressedImageB4(const uint8_t *data, uint16_t size) {
+  uint8_t width   = data[0];
+  uint8_t b_count = 0;
+  uint8_t w_count = 0;
+  uint8_t x_cur   = 0;
+  uint8_t y_cur   = 0;
 
   for (uint16_t i = 1; i < size; i++) {
-    color = (SSD1306_COLOR)(data[i] >> 7);
-    count = data[i] & 0x7f;
+    b_count = data[i] >> 4;
+    w_count = data[i] & 0x0f;
 
-    for (uint8_t j = 0; j <= count; j++) {
-      ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, color);
+    for (uint8_t j = 0; j < b_count; j++) {
+      ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, ssd1306_black);
+      x_cur++;
+
+      if (x_cur >= width) {
+        x_cur = 0;
+        y_cur++;
+      }
+    }
+
+    for (uint8_t j = 0; j < w_count; j++) {
+      ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, ssd1306_white);
       x_cur++;
 
       if (x_cur >= width) {
@@ -216,26 +226,32 @@ void ssd1306_writeCompressedImage(const uint8_t *data, uint16_t size) {
   }
 }
 
-void ssd1306_writeCompressedSlideImage(uint8_t slide, const uint8_t *data, uint16_t size) {
-  SSD1306_COLOR color = ssd1306_black;
-  uint8_t width       = data[0];
-  uint8_t count       = 0;
-  uint8_t x_cur       = 0;
-  uint8_t y_cur       = 0;
+void ssd1306_writeCompressedSlideImageB4(uint8_t slide, const uint8_t *data, uint16_t size) {
+  uint8_t width   = data[0];
+  uint8_t b_count = 0;
+  uint8_t w_count = 0;
+  uint8_t x_cur   = 0;
+  uint8_t y_cur   = 0;
 
   for (uint16_t i = 1; i < size; i++) {
-    color = (SSD1306_COLOR)(data[i] >> 7);
-    count = data[i] & 0x7f;
+    b_count = data[i] >> 4;
+    w_count = data[i] & 0x0f;
 
-    for (uint8_t j = 0; j <= count; j++) {
-      if (color == ssd1306_white) {
-        if (y_cur < slide) {
-          ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, ssd1306_black);
-        } else {
-          ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, ssd1306_white);
-        }
+    for (uint8_t j = 0; j < b_count; j++) {
+      x_cur++;
+
+      if (x_cur >= width) {
+        x_cur = 0;
+        y_cur++;
       }
+    }
 
+    for (uint8_t j = 0; j < w_count; j++) {
+      if (y_cur < slide) {
+        ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, ssd1306_black);
+      } else {
+        ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, ssd1306_white);
+      }
       x_cur++;
 
       if (x_cur >= width) {

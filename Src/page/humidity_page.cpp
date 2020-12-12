@@ -6,13 +6,13 @@
 extern uint32_t fixed_humidity;
 extern char buf[32];
 
-extern const uint8_t image_humidity_icon[84];
-extern const uint8_t image_humidity_value[36];
+extern const uint8_t image_humidity_icon[43];
+extern const uint8_t image_humidity_value[23];
 
 void HumidityPage::drawWholeScreen() {
   ssd1306_setFillMode(true);
-  ssd1306_setCursor(4, 4);
-  ssd1306_writeCompressedImage(image_humidity_icon, sizeof(image_humidity_icon));
+  ssd1306_setCursor(8, 4);
+  ssd1306_writeCompressedImageB4(image_humidity_icon, sizeof(image_humidity_icon));
 
   ssd1306_setCursor(116, 11);
   ssd1306_writeString("%", Font_11x18, ssd1306_white);
@@ -27,9 +27,9 @@ void HumidityPage::draw() {
   float humidity = fixedHumidityToHumidity(fixed_humidity);
 
   ssd1306_setFillMode(true);
-  ssd1306_setCursor(5, 6);
-  ssd1306_writeCompressedSlideImage((uint8_t)(21.0 - 21.0 * (humidity / 100.0)), image_humidity_value,
-                                    sizeof(image_humidity_value));
+  ssd1306_setCursor(9, 6);
+  ssd1306_writeCompressedSlideImageB4((uint8_t)(21.0 - 21.0 * (humidity / 100.0)), image_humidity_value,
+                                      sizeof(image_humidity_value));
 
   if (fixed_humidity == BMP280_MAX_HUMIDITY) {
     ssd1306_setCursor(26, NumberYPosition);
