@@ -1,4 +1,5 @@
 #include "bmp280_macros.hpp"
+#include "c_image.h"
 #include "fonts.h"
 #include "page.hpp"
 #include "ssd1306.h"
@@ -6,13 +7,13 @@
 extern uint32_t fixed_pressure;
 extern char buf[32];
 
-extern const uint8_t image_pressure_icon[54];
-extern const uint8_t image_pressure_value[22];
+extern const CImage image_pressure_icon;
+extern const CImage image_pressure_value;
 
 void PressurePage::drawWholeScreen() {
   ssd1306_setFillMode(true);
   ssd1306_setCursor(4, 4);
-  ssd1306_writeCompressedImageB4(image_pressure_icon, sizeof(image_pressure_icon));
+  cImage_write(&image_pressure_icon);
 
   ssd1306_setCursor(103, 3);
   ssd1306_writeString("hPa", Font_7x10, ssd1306_white);
@@ -36,8 +37,7 @@ void PressurePage::draw() {
 
   ssd1306_setFillMode(true);
   ssd1306_setCursor(5, 5);
-  ssd1306_writeCompressedSlideImageB4((uint8_t)(12.0 - 12.0 * (pressure_icon_value / 35.0)), image_pressure_value,
-                                      sizeof(image_pressure_value));
+  cImage_writeSlide(&image_pressure_value, (uint8_t)(12.0 - 12.0 * (pressure_icon_value / 35.0)));
 
   ssd1306_setFillMode(true);
   ssd1306_setCursor(37, 5);

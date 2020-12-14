@@ -4,7 +4,7 @@
 static uint8_t ssd1306_buffer[SSD1306_WIDTH * SSD1306_HEIGHT / 8];
 
 // Screen object
-static SSD1306_t SSD1306;
+SSD1306_t SSD1306;
 
 //
 // Send a byte to the command register
@@ -191,73 +191,4 @@ void ssd1306_displayOn() {
 
 void ssd1306_displayOff() {
   ssd1306_writeCommand(SSD1306_DISPLAYOFF);
-}
-
-void ssd1306_writeCompressedImageB4(const uint8_t *data, uint16_t size) {
-  uint8_t width   = data[0];
-  uint8_t b_count = 0;
-  uint8_t w_count = 0;
-  uint8_t x_cur   = 0;
-  uint8_t y_cur   = 0;
-
-  for (uint16_t i = 1; i < size; i++) {
-    b_count = data[i] >> 4;
-    w_count = data[i] & 0x0f;
-
-    for (uint8_t j = 0; j < b_count; j++) {
-      ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, ssd1306_black);
-      x_cur++;
-
-      if (x_cur >= width) {
-        x_cur = 0;
-        y_cur++;
-      }
-    }
-
-    for (uint8_t j = 0; j < w_count; j++) {
-      ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, ssd1306_white);
-      x_cur++;
-
-      if (x_cur >= width) {
-        x_cur = 0;
-        y_cur++;
-      }
-    }
-  }
-}
-
-void ssd1306_writeCompressedSlideImageB4(uint8_t slide, const uint8_t *data, uint16_t size) {
-  uint8_t width   = data[0];
-  uint8_t b_count = 0;
-  uint8_t w_count = 0;
-  uint8_t x_cur   = 0;
-  uint8_t y_cur   = 0;
-
-  for (uint16_t i = 1; i < size; i++) {
-    b_count = data[i] >> 4;
-    w_count = data[i] & 0x0f;
-
-    for (uint8_t j = 0; j < b_count; j++) {
-      x_cur++;
-
-      if (x_cur >= width) {
-        x_cur = 0;
-        y_cur++;
-      }
-    }
-
-    for (uint8_t j = 0; j < w_count; j++) {
-      if (y_cur < slide) {
-        ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, ssd1306_black);
-      } else {
-        ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, ssd1306_white);
-      }
-      x_cur++;
-
-      if (x_cur >= width) {
-        x_cur = 0;
-        y_cur++;
-      }
-    }
-  }
 }
