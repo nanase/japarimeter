@@ -5,6 +5,7 @@
 
 typedef struct {
   uint16_t size;
+  uint8_t width;
   const uint8_t *data;
 } CImage;
 

@@ -5,13 +5,13 @@
 extern SSD1306_t SSD1306;
 
 void cImage_write(const CImage *image) {
-  uint8_t width   = image->data[0];
+  uint8_t width   = image->width;
   uint8_t b_count = 0;
   uint8_t w_count = 0;
   uint8_t x_cur   = 0;
   uint8_t y_cur   = 0;
 
-  for (uint16_t i = 1; i < image->size; i++) {
+  for (uint16_t i = 0; i < image->size; i++) {
     b_count = image->data[i] >> 4;
     w_count = image->data[i] & 0x0f;
 
@@ -38,13 +38,13 @@ void cImage_write(const CImage *image) {
 }
 
 void cImage_writeSlide(const CImage *image, uint8_t slide) {
-  uint8_t width   = image->data[0];
+  uint8_t width   = image->width;
   uint8_t b_count = 0;
   uint8_t w_count = 0;
   uint8_t x_cur   = 0;
   uint8_t y_cur   = 0;
 
-  for (uint16_t i = 1; i < image->size; i++) {
+  for (uint16_t i = 0; i < image->size; i++) {
     b_count = image->data[i] >> 4;
     w_count = image->data[i] & 0x0f;
 
