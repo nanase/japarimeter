@@ -32,7 +32,7 @@ void TemperatureHumidityPage::drawWholeScreen() {
   ssd1306_writeString(".", Font_11x18, ssd1306_white);
 }
 
-void TemperatureHumidityPage::draw() {
+bool TemperatureHumidityPage::draw() {
   float temperature = fixedTemperatureToTemperature(fixed_temperature);
   float humidity    = fixedHumidityToHumidity(fixed_humidity);
 
@@ -55,4 +55,6 @@ void TemperatureHumidityPage::draw() {
   ssd1306_setCursor(39 + 64, 12);
   sprintf(buf, "%02d", (int8_t)((humidity - (int16_t)humidity) * 100));
   ssd1306_writeString(buf, Font_11x18, ssd1306_white);
+
+  return false;
 }

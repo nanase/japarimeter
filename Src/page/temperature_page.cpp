@@ -26,7 +26,7 @@ void TemperaturePage::drawWholeScreen() {
   ssd1306_writeString(".", Font_11x18, ssd1306_white);
 }
 
-void TemperaturePage::draw() {
+bool TemperaturePage::draw() {
   const uint8_t NumberYPosition = 5;
 
   float temperature            = fixedTemperatureToTemperature(fixed_temperature);
@@ -55,4 +55,6 @@ void TemperaturePage::draw() {
   ssd1306_setCursor(80, NumberYPosition);
   sprintf(buf, "%02d", (int8_t)((temperature - (int16_t)temperature) * 100));
   ssd1306_writeString(buf, Font_16x26, ssd1306_white);
+
+  return false;
 }

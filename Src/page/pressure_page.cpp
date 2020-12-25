@@ -23,7 +23,7 @@ void PressurePage::drawWholeScreen() {
   ssd1306_writeString(".", Font_11x18, ssd1306_white);
 }
 
-void PressurePage::draw() {
+bool PressurePage::draw() {
   float pressure_hpa        = fixedPressureToHectoPa(fixed_pressure);
   float pressure_icon_value = pressure_hpa;
 
@@ -48,4 +48,6 @@ void PressurePage::draw() {
   ssd1306_setCursor(103, 12);
   sprintf(buf, "%02d", (int8_t)((pressure_hpa - (int16_t)pressure_hpa) * 100));
   ssd1306_writeString(buf, Font_11x18, ssd1306_white);
+
+  return false;
 }

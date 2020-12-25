@@ -22,7 +22,7 @@ void HumidityPage::drawWholeScreen() {
   ssd1306_writeString(".", Font_11x18, ssd1306_white);
 }
 
-void HumidityPage::draw() {
+bool HumidityPage::draw() {
   const uint8_t NumberYPosition = 5;
 
   float humidity = fixedHumidityToHumidity(fixed_humidity);
@@ -46,4 +46,6 @@ void HumidityPage::draw() {
     sprintf(buf, "%02d", (int8_t)((humidity - (int16_t)humidity) * 100));
     ssd1306_writeString(buf, Font_16x26, ssd1306_white);
   }
+
+  return false;
 }

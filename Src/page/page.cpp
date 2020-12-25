@@ -9,7 +9,9 @@ void Page::initialize() {
   this->update();
 }
 
-void Page::update() {
-  this->draw();
+bool Page::update() {
+  bool nextPage = this->draw();
   ssd1306_updateScreen();
+
+  return nextPage;
 }
