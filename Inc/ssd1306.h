@@ -3,8 +3,6 @@
 
 #include <stdbool.h>
 
-#include "fonts.h"
-
 /**
  * This Library is written and optimized by Olivier Van den Eede(4ilo) in 2016
  * for Stm32 Uc and HAL-i2c lib's.
@@ -115,17 +113,12 @@ uint8_t ssd1306_initialize(void);
 void ssd1306_updateScreen(void);
 void ssd1306_fill(SSD1306_COLOR color);
 void ssd1306_drawPixel(uint8_t x, uint8_t y, SSD1306_COLOR color);
-char ssd1306_writeChar(char ch, FontDef Font, SSD1306_COLOR color);
-char ssd1306_writeString(const char *str, FontDef Font, SSD1306_COLOR color);
 void ssd1306_setCursor(uint8_t x, uint8_t y);
 void ssd1306_setFillMode(bool);
 
 void ssd1306_setContrast(uint8_t contrast);
 void ssd1306_displayOn();
 void ssd1306_displayOff();
-
-void ssd1306_writeCompressedImageB4(const uint8_t *data, uint16_t size);
-void ssd1306_writeCompressedSlideImageB4(uint8_t slide, const uint8_t *data, uint16_t size);
 
 #ifdef __cplusplus
 }

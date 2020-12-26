@@ -1,6 +1,6 @@
 #include "bmp280_macros.hpp"
+#include "c_font.h"
 #include "c_image.h"
-#include "fonts.h"
 #include "page.hpp"
 #include "ssd1306.h"
 
@@ -16,10 +16,10 @@ void HumidityPage::drawWholeScreen() {
   cImage_write(&image_humidity_icon);
 
   ssd1306_setCursor(116, 11);
-  ssd1306_writeString("%", Font_11x18, ssd1306_white);
+  cFont_writeString(&font_11x18, "%");
 
   ssd1306_setCursor(73, 11);
-  ssd1306_writeString(".", Font_11x18, ssd1306_white);
+  cFont_writeString(&font_11x18, ".");
 }
 
 bool HumidityPage::draw() {
@@ -33,18 +33,18 @@ bool HumidityPage::draw() {
 
   if (fixed_humidity == BMP280_MAX_HUMIDITY) {
     ssd1306_setCursor(26, NumberYPosition);
-    ssd1306_writeString("100", Font_16x26, ssd1306_white);
+    cFont_writeString(&font_16x26, "100");
 
     ssd1306_setCursor(80, NumberYPosition);
-    ssd1306_writeString("00", Font_16x26, ssd1306_white);
+    cFont_writeString(&font_16x26, "00");
   } else {
     ssd1306_setCursor(43, NumberYPosition);
     sprintf(buf, "%2d", (uint8_t)humidity);
-    ssd1306_writeString(buf, Font_16x26, ssd1306_white);
+    cFont_writeString(&font_16x26, buf);
 
     ssd1306_setCursor(80, NumberYPosition);
     sprintf(buf, "%02d", (int8_t)((humidity - (int16_t)humidity) * 100));
-    ssd1306_writeString(buf, Font_16x26, ssd1306_white);
+    cFont_writeString(&font_16x26, buf);
   }
 
   return false;

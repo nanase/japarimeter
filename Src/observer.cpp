@@ -3,9 +3,9 @@
 #include "bmp280.h"
 #include "bmp280_macros.hpp"
 #include "board_config.h"
+#include "c_font.h"
 #include "c_image.h"
 #include "flash.h"
-#include "fonts.h"
 #include "main.h"
 #include "page_master.hpp"
 #include "ssd1306.h"
@@ -66,10 +66,10 @@ void setup() {
     ssd1306_setFillMode(true);
     ssd1306_setCursor(0, 0);
     sprintf(buf, "error %d", error++);
-    ssd1306_writeString(buf, Font_11x18, ssd1306_white);
+    cFont_writeString(&font_11x18, buf);
     ssd1306_setCursor(0, 18);
     sprintf(buf, "%ld", fixed_pressure);
-    ssd1306_writeString(buf, Font_7x10, ssd1306_white);
+    cFont_writeString(&font_11x18, buf);
 
     ssd1306_updateScreen();
 

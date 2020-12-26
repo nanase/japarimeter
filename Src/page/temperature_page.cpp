@@ -1,6 +1,6 @@
 #include "bmp280_macros.hpp"
+#include "c_font.h"
 #include "c_image.h"
-#include "fonts.h"
 #include "page.hpp"
 #include "ssd1306.h"
 
@@ -16,14 +16,14 @@ void TemperaturePage::drawWholeScreen() {
   cImage_write(&image_temperature_icon);
 
   ssd1306_setCursor(116, 11);
-  ssd1306_writeString("C", Font_11x18, ssd1306_white);
+  cFont_writeString(&font_11x18, "C");
 
   ssd1306_setFillMode(false);
   ssd1306_setCursor(112, 8);
-  ssd1306_writeString("o", Font_7x10, ssd1306_white);
+  cFont_writeString(&font_7x10, "o");
 
   ssd1306_setCursor(73, 11);
-  ssd1306_writeString(".", Font_11x18, ssd1306_white);
+  cFont_writeString(&font_11x18, ".");
 }
 
 bool TemperaturePage::draw() {
@@ -44,17 +44,17 @@ bool TemperaturePage::draw() {
 
   if (temperature < 0.0) {
     ssd1306_setCursor(26, NumberYPosition);
-    ssd1306_writeString("-", Font_16x26, ssd1306_white);
+    cFont_writeString(&font_16x26, "-");
     temperature *= -1.0;
   }
 
   ssd1306_setCursor(43, NumberYPosition);
   sprintf(buf, "%2d", (uint8_t)temperature);
-  ssd1306_writeString(buf, Font_16x26, ssd1306_white);
+  cFont_writeString(&font_16x26, buf);
 
   ssd1306_setCursor(80, NumberYPosition);
   sprintf(buf, "%02d", (int8_t)((temperature - (int16_t)temperature) * 100));
-  ssd1306_writeString(buf, Font_16x26, ssd1306_white);
+  cFont_writeString(&font_16x26, buf);
 
   return false;
 }
