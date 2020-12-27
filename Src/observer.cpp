@@ -40,13 +40,8 @@ void setup() {
 
   ssd1306_initialize();
   ssd1306_fill(ssd1306_black);
-  // ssd1306_setCursor(0, 0);
-  // cImage_write(&image_logo);
   ssd1306_updateScreen();
-  // HAL_Delay(10000);
 
-  // BoardConfig config;
-  // flash_read(31, 0, &config, sizeof(BoardConfig));
   uint16_t error = 1;
 
   do {
@@ -78,39 +73,38 @@ void setup() {
 
   HAL_TIM_Base_Start_IT(&htim6);
 
-  // if (config.magic_number != 0x7F01CF42)
-  // {
-  //   ssd1306_setFillMode(true);
-  //   ssd1306_fill(ssd1306_black);
-  //   ssd1306_setCursor(5, 5);
-  //   ssd1306_writeString("erase", Font_16x26, ssd1306_white);
-  //   ssd1306_updateScreen();
-  //   HAL_Delay(1000);
+  BoardConfig config;
+  flash_read(CONFIG_PAGE, 0, &config, sizeof(BoardConfig));
 
-  //   flash_erase_page(31);
-  //   config.magic_number = 0x7F01CF42;
-  //   config.count = 0;
-  //   flash_write(31, 0, &config, sizeof(BoardConfig));
-  // }
-  // else
-  // {
-  //   config.count++;
-  //   flash_erase_page(31);
-  //   flash_write(31, 0, &config, sizeof(BoardConfig));
-  // }
+  if (config.magic_number != CONFIG_MAGICNUMBER) {
+    ssd1306_setFillMode(true);
+    ssd1306_fill(ssd1306_black);
+    ssd1306_setCursor(5, 5);
+    cFont_writeString(&font_16x26, "erase");
+    // ssd1306_writeString("erase", Font_16x26, ssd1306_white);
+    ssd1306_updateScreen();
+    HAL_Delay(1000);
 
-  // flash_read(31, 0, &config, sizeof(BoardConfig));
+    flash_erase_page(CONFIG_PAGE);
+    config.magic_number = CONFIG_MAGICNUMBER;
+    config.count        = 0;
+    flash_write(CONFIG_PAGE, 0, &config, sizeof(BoardConfig));
+  } else {
+    config.count++;
+    flash_erase_page(CONFIG_PAGE);
+    flash_write(CONFIG_PAGE, 0, &config, sizeof(BoardConfig));
+  }
 
-  // ssd1306_setFillMode(true);
-  // ssd1306_fill(ssd1306_black);
-  // ssd1306_setCursor(5, 5);
-  // sprintf(buf, "%d", config.count);
+  flash_read(CONFIG_PAGE, 0, &config, sizeof(BoardConfig));
+
+  ssd1306_setFillMode(true);
+  ssd1306_fill(ssd1306_black);
+  ssd1306_setCursor(5, 5);
+  sprintf(buf, "%d", config.count);
+  cFont_writeString(&font_16x26, buf);
   // ssd1306_writeString(buf, Font_16x26, ssd1306_white);
-  // ssd1306_updateScreen();
-  // HAL_Delay(2000);
-
-  // page = new TemperaturePage();
-  // page->initialize();
+  ssd1306_updateScreen();
+  HAL_Delay(2000);
 
   pageMaster.initialize();
 }
