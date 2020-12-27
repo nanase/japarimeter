@@ -2,7 +2,12 @@
 #include "main.h"
 #include "page_master.hpp"
 
+#if defined(STM32F303x8)
 extern TIM_HandleTypeDef htim6;
+#elif defined(STM32G031xx)
+extern TIM_HandleTypeDef htim16;
+#endif
+
 extern BMP280_HandleTypedef bmp280;
 
 extern int32_t fixed_temperature;

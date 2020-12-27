@@ -25,12 +25,22 @@ int32_t fixed_temperature;
 uint32_t fixed_pressure;
 uint32_t fixed_humidity;
 
+#if defined(STM32F303x8)
 extern TIM_HandleTypeDef htim6;
+#elif defined(STM32G031xx)
+extern TIM_HandleTypeDef htim16;
+#endif
 
 void setup() {
   bmp280_init_default_params(&bmp280.params);
   bmp280.addr = BMP280_I2C_ADDRESS_0;
-  bmp280.i2c  = &hi2c1;
+
+#if defined(STM32F303x8)
+  bmp280.i2c = &hi2c1;
+#elif defined(STM32G031xx)
+  bmp280.i2c = &hi2c2;
+#endif
+
   // bmp280.params.mode = BMP280_MODE_NORMAL;
   bmp280.params.filter                   = BMP280_FILTER_OFF;
   bmp280.params.oversampling_pressure    = BMP280_ULTRA_LOW_POWER;
@@ -71,7 +81,11 @@ void setup() {
     HAL_Delay(1000);
   } while (1);
 
+#if defined(STM32F303x8)
   HAL_TIM_Base_Start_IT(&htim6);
+#elif defined(STM32G031xx)
+  HAL_TIM_Base_Start_IT(&htim16);
+#endif
 
   BoardConfig config;
   flash_read(CONFIG_PAGE, 0, &config, sizeof(BoardConfig));
