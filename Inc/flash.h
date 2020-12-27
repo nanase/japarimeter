@@ -4,7 +4,11 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#if defined(STM32F303x8)
 #include "stm32f3xx_hal.h"
+#elif defined(STM32G031xx)
+#include "stm32g0xx_hal.h"
+#endif
 
 #ifdef __cplusplus
 extern "C" {
