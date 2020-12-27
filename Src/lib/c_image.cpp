@@ -5,7 +5,6 @@
 extern SSD1306_t SSD1306;
 
 void cImage_write(const CImage *image) {
-  uint8_t width   = image->width;
   uint8_t b_count = 0;
   uint8_t w_count = 0;
   uint8_t x_cur   = 0;
@@ -19,7 +18,7 @@ void cImage_write(const CImage *image) {
       ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, ssd1306_black);
       x_cur++;
 
-      if (x_cur >= width) {
+      if (x_cur >= image->width) {
         x_cur = 0;
         y_cur++;
       }
@@ -29,7 +28,7 @@ void cImage_write(const CImage *image) {
       ssd1306_drawPixel(SSD1306.currentX + x_cur, SSD1306.currentY + y_cur, ssd1306_white);
       x_cur++;
 
-      if (x_cur >= width) {
+      if (x_cur >= image->width) {
         x_cur = 0;
         y_cur++;
       }
@@ -38,7 +37,6 @@ void cImage_write(const CImage *image) {
 }
 
 void cImage_writeSlide(const CImage *image, uint8_t slide) {
-  uint8_t width   = image->width;
   uint8_t b_count = 0;
   uint8_t w_count = 0;
   uint8_t x_cur   = 0;
@@ -51,7 +49,7 @@ void cImage_writeSlide(const CImage *image, uint8_t slide) {
     for (uint8_t j = 0; j < b_count; j++) {
       x_cur++;
 
-      if (x_cur >= width) {
+      if (x_cur >= image->width) {
         x_cur = 0;
         y_cur++;
       }
@@ -65,7 +63,7 @@ void cImage_writeSlide(const CImage *image, uint8_t slide) {
       }
       x_cur++;
 
-      if (x_cur >= width) {
+      if (x_cur >= image->width) {
         x_cur = 0;
         y_cur++;
       }
