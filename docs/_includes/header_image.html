@@ -1,0 +1,26 @@
+<div class="header_img" style="background-image:url('{{site.baseurl}}{{page.header_image}}')">
+  <div class="header_box">
+    <section class="header_content">
+      {% if page.header_top %}
+      <div class="header_logo">
+      </div>
+      {% else %}
+      <h1>
+        {{page.header_title}}
+        <span class="header_version">{{page.header_version}}</span>
+      </h1>
+      {% endif %}
+      <div class="header_description">{{page.header_description}}</div>
+      <div>
+        {% for label in page.header_label %}
+        <span class="label label-{{label}}"></span>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="header_share">
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false"
+        data-lang="en">&nbsp;</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+theme: jekyll-theme-slate
+highlighter: rouge
+encoding: utf-8
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+repository: nanase/japarimeter
+url: https://nanase.cc/japarimeter
+title: JapariMeter
+share-links-active:
+  twitter: true
+social-network-links:
+  github: nanase
+  twitter: nanase_coder
+whitelist:
+  - jekyll-github-metadata
+plugins:
+  - jekyll-github-metadata

@@ -1,0 +1,340 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+@import url('https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@500&display=swap');
+
+body, th {
+  font-family: "Noto Sans JP", Helvetica, Arial, "BIZ UDPGothic", sans-serif;
+  font-size: 18px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 30px 0 10px 0;
+  font-family: "Noto Sans JP", Helvetica, Arial, "BIZ UDPGothic", sans-serif;
+  letter-spacing: 0;
+}
+
+h2 {
+  border-bottom: solid 2px #cecece;
+  padding: 5px 0px;
+  margin: 30px 0 15px 0;
+  background: none;
+}
+
+h3 {
+  background-color: #373737;
+  padding: 2px 10px 2px 40px;
+  color: white;
+  line-height: 1.25;
+  display: inline-block;
+  font-weight: 400;
+}
+
+.inner {
+  padding: 20px 40px;
+}
+
+#main_content.inner,
+#header_wrap .inner,
+#footer_wrap .inner,
+.header_img .header_box {
+  max-width: 1180px;
+}
+.header_box {
+  min-height: 640px;
+}
+.header_img .header_share {
+  right: 0;
+}
+
+@media (max-width: 1239px) {
+  #main_content.inner,
+  #header_wrap .inner,
+  #footer_wrap .inner,
+  .header_img .header_box {
+    max-width: 1020px;
+  }
+  .header_box {
+    min-height: 540px;
+  }
+  .header_img .header_share {
+    right: 0;
+  }
+}
+
+@media (max-width: 1079px) {
+  #main_content.inner {
+    max-width: 920px;
+    padding: 40px 20px;
+  }
+  #header_wrap .inner {
+    max-width: 920px;
+    margin: 0 20px;
+  }
+  #footer_wrap .inner,
+  .header_img .header_box {
+    max-width: 920px;
+    padding: 0 20px;
+  }
+  .header_box {
+    min-height: 480px;
+  }
+  .header_img .header_share {
+    right: 20px;
+  }
+}
+
+@media (max-width: 719px) {
+  #main_content.inner {
+    max-width: 640px;
+    padding: 40px 20px;
+  }
+  #header_wrap .inner {
+    max-width: 920px;
+    margin: 0 20px;
+  }
+  #footer_wrap .inner,
+  .header_img .header_box {
+    max-width: 640px;
+    padding: 0 20px;
+  }
+  .header_box {
+    min-height: 360px;
+  }
+  .header_img .header_share {
+    right: 20px;
+  }
+}
+
+.header_img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
+  width: 100%;
+  left: 0;
+  right: 0;
+  color: white;
+  box-shadow: inset 0px -80px 40px 0px black;
+  margin-top: 45px;
+
+  .header_box {
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .header_logo {
+    background-image: url({{site.baseurl}}/assets/img/logo.svg);
+    background-repeat: no-repeat;
+    background-size: 320px;
+    background-position: left center;
+    width: 320px;
+    height: 80px;
+  }
+
+  .header_description {
+    font-weight: bold;
+    font-family: zillaslab, Palatino, "Palatino Linotype", serif;
+  }
+
+  .header_content {
+    position: absolute;
+    bottom: 1em;
+    text-shadow: black 2px 2px 4px, black -2px -2px 4px;
+  }
+
+  .header_share {
+    position: absolute;
+    bottom: 1em;
+  }
+
+  .header_version {
+    font-size: 60%;
+  }
+
+  h1 {
+    margin: 0;
+    color: white;
+  }
+
+  .label {
+    margin: 0 1px 0 0px;
+    font-size: 10px;
+    font-weight: normal;
+    padding: 1px 12px;
+    border: 1px solid white;
+    vertical-align: 2px;
+    text-shadow: none;
+
+    &.label-discontinued::after {
+      content: "開発終了";
+    }
+
+    &.label-inprogress::after {
+      content: "開発中";
+    }
+
+    &.label-supported::after {
+      content: "サポート中";
+    }
+  }
+}
+
+#main_content.inner {
+  background-color: white;
+}
+
+.fit-image-width img {
+  max-width: 100%;
+}
+
+.no-image-border img {
+  box-shadow: none;
+  border: none;
+}
+
+// Header ----------------------------------------------------------------------
+
+#header_wrap {
+  background: #212121;
+  height: 46px;
+  position: fixed;
+  z-index: 1000;
+
+  .inner {
+    background-image: url({{site.baseurl}}/assets/img/logo.svg);
+    background-repeat: no-repeat;
+    background-size: 130px;
+    background-position: left center;
+    padding: 0;
+    height: 46px;
+  }
+
+  .link {
+    display: inline-block;
+    width: 130px;
+    height: 46px;
+    position: absolute;
+  }
+}
+
+.header_navigator {
+  color: #eee;
+  text-align: right;
+  padding: 8px 0px;
+  font-size: 90%;
+
+
+  .item {
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+// Footer ----------------------------------------------------------------------
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+
+.svg-lazuli {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2070%2070%22%20fill%3D%22%23eee%22%3E%3Cpath%20d%3D%22M8%200C4.6%200%201.8%202.8%201.8%206.3v55.5C1.8%2065.2%204.6%2068%208%2068h55.6c3.4%200%206.3-2.7%206.3-6V6.3c0-3.3-3-6-6.7-6h-55zm0%202.5h55.5c2%200%203.8%201.7%203.8%203.8v55.5c0%202-1.7%203.8-3.8%203.8H8c-2%200-3.7-1.7-3.7-3.7V6C4.3%204%206%202.3%208%202.3zM11%2061L29.3%207.2H43L60.6%2061H48L35.6%2025.5%2023.6%2061z%22%2F%3E%3C%2Fsvg%3E');
+}
+
+#footer_wrap .inner {
+  color: #eee;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+
+  a {
+    text-decoration: none;
+  }
+
+  .logo {
+    display: inline-block;
+    padding-left: 30px;
+    background-position: left;
+    background-size: 24px 24px;
+    font-size: 26px;
+    font-weight: bold;
+
+    &::after {
+      content: "Lazuli";
+    }
+  }
+
+  .link {
+    display: inline-block;
+    color: #aaa;
+    padding: 0 4px;
+    font-size: 90%;
+
+    &::after {
+      content: "nanase.cc"
+    }
+  }
+}
+
+// Table -----------------------------------------------------------------------
+
+.table-center {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.spec-table {
+  width: 100%;
+  border: none;
+
+  th {
+    color: inherit;
+    font-weight: bold;
+    background-color: #eaeaea;
+    width: 25%;
+    border: 2px solid #fff;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  td {
+    border: 2px solid #fff;
+    background-color: #f2f2f2;
+
+  }
+}
+
+// Text style / variant / decorations ------------------------------------------
+
+.small-caps {
+  font-variant-caps: small-caps;
+}
+
+.foot-note {
+  font-size: 80%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.margin-50 {
+  margin: 50px 0;
+}
+
+.epitaph {
+  font-family: 'Palanquin Dark', sans-serif;
+}

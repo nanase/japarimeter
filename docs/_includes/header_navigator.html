@@ -1,0 +1,9 @@
+<a class="link" href="./">
+</a>
+<div class="header_navigator">
+  <div class="subpages">
+    {% for subpage in page.subpages %}
+    <div class="item"><a href="{{subpage.page}}">{{subpage.title}}</a></div>
+    {% endfor %}
+  </div>
+</div>
