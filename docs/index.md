@@ -19,7 +19,7 @@ subpages:
 
 JapariMeter は手のひらサイズで動く温湿度気圧計です。ボタン電池 1 つで気温、湿度、気圧がわかります。視認性の高い有機 EL ディスプレイ採用でどこでも見やすく。
 
-<table class="borderless-table no-image-border less-padding foot-note text-center">
+<table class="borderless-table no-image-border less-padding foot-note text-center center-table" style="max-width: 600px">
   <tbody>
     <tr>
       <td>
