@@ -13,12 +13,29 @@ subpages:
 
 # 更新履歴
 
-## Rev.1
+## ファームウェア
 
 <table class="spec-table">
   <tbody>
     <tr>
-      <th>2021.01.01</th>
+      <th>
+        2021.01.01<br />
+        <span class="foot-note">1.0.0</span>
+      </th>
+      <td>公開</td>
+    </tr>
+  </tbody>
+</table>
+
+## 基板
+
+<table class="spec-table">
+  <tbody>
+    <tr>
+      <th>
+        2021.01.01<br />
+        <span class="foot-note">Rev.1</span>
+      </th>
       <td>公開</td>
     </tr>
   </tbody>

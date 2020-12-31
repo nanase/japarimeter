@@ -19,23 +19,56 @@ subpages:
 
 JapariMeter は手のひらサイズで動く温湿度気圧計です。ボタン電池 1 つで気温、湿度、気圧がわかります。視認性の高い有機 EL ディスプレイ採用でどこでも見やすく。
 
+<table class="borderless-table no-image-border less-padding foot-note text-center">
+  <tbody>
+    <tr>
+      <td>
+        <img src="{{site.baseurl}}/assets/img/display/temperature.png" /><br />
+        気温
+      </td>
+      <td>
+        <img src="{{site.baseurl}}/assets/img/display/humidity.png" /><br />
+        湿度
+      </td>
+      <td>
+        <img src="{{site.baseurl}}/assets/img/display/pressure.png" /><br />
+        気圧
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img src="{{site.baseurl}}/assets/img/display/temperature_humidity.png" /><br />
+        気温・湿度
+      </td>
+      <td>
+        <img src="{{site.baseurl}}/assets/img/display/di.png" /><br />
+        不快指数
+      </td>
+      <td>
+        <img src="{{site.baseurl}}/assets/img/display/altitude.png" /><br />
+        高度
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## つかいかた
 
 - 電源スイッチ：未使用時は電源をお切りください。
 - ページ切り替えボタン：ボタンを押すと 気温 → 湿度 → 気圧 → 温湿度 → 不快指数 → 推定高度 →（気温）の順にページが切り替わります。
 - 情報表示ボタン：公式サイトへのリンク、バージョン表記ページに切り替わります。
 
-## こんなときは
-
-- 電源が入らない、ディスプレイに何も表示されない、もしくは暗い：電池が消耗しています。新しい電池に交換してください。
-- 「Error: Sensor connection」と表示される：製作者にご連絡ください。
-- 計測値が「---」と表示される：電源を切り、10 秒ほどしてから再度電源を入れてください。表示が継続する場合は製作者にご連絡ください。
-
 ## 使用上の注意
 
 - ディスプレイに有機 EL を使用しているため、長期間使用すると輝度に偏りが発生しますが異常ではありません。
 - センサ部分に触れたり、息を吹きかけないでください。
 - この温湿度気圧計はホビー用途です。厳密な測定を必要とする用途には使用できません。
+
+## こんなときは
+
+- 電源が入らない、ディスプレイに何も表示されない、もしくは暗い：電池が消耗しています。新しい電池に交換してください。
+- 「Error: Sensor connection」と表示される：製作者にご連絡ください。
+- 計測値が「---」と表示される：電源を切り、10 秒ほどしてから再度電源を入れてください。表示が継続する場合は製作者にご連絡ください。
 
 ## 安全な電池の取り扱い
 

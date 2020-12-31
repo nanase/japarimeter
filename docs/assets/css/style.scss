@@ -191,6 +191,8 @@ h3 {
   background-color: white;
 }
 
+// Image -----------------------------------------------------------------------
+
 .fit-image-width img {
   max-width: 100%;
 }
@@ -198,6 +200,11 @@ h3 {
 .no-image-border img {
   box-shadow: none;
   border: none;
+}
+
+.less-padding img {
+  padding: 0;
+  margin: 0;
 }
 
 // Header ----------------------------------------------------------------------
@@ -313,7 +320,16 @@ h3 {
   td {
     border: 2px solid #fff;
     background-color: #f2f2f2;
+  }
+}
 
+.borderless-table {
+  width: 100%;
+  border: none;
+  table-layout: fixed;
+
+  td {
+    border: none;
   }
 }
 
