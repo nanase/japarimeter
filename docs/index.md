@@ -165,11 +165,30 @@ JapariMeter は手のひらサイズで動く温湿度気圧計です。ボタ�
   <tbody>
     <tr>
       <th>組み立てマニュアル</th>
-      <td></td>
+      <td>準備中</td>
     </tr>
     <tr>
-      <th>回路図</th>
-      <td></td>
+      <th>図面</th>
+      <td class="no-image-border text-center">
+        <div class="inline-block">
+          <a href="{{site.baseurl}}/assets/pdf/rev1_circuit.pdf" target="_blank">
+            <img src="{{site.baseurl}}/assets/img/pdf_thumb/rev1_circuit.png" style="max-width: 240px" /><br />
+            回路図
+          </a>
+        </div>
+        <div class="inline-block">
+          <a href="{{site.baseurl}}/assets/pdf/rev1_pcb_top.pdf" target="_blank">
+            <img src="{{site.baseurl}}/assets/img/pdf_thumb/rev1_pcb_top.png" style="max-width: 240px" /><br />
+            基板表面
+          </a>
+        </div>
+        <div class="inline-block">
+          <a href="{{site.baseurl}}/assets/pdf/rev1_pcb_bottom.pdf" target="_blank">
+            <img src="{{site.baseurl}}/assets/img/pdf_thumb/rev1_pcb_bottom.png" style="max-width: 240px" /><br />
+            基板裏面
+          </a>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>

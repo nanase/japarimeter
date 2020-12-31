@@ -311,6 +311,7 @@ h3 {
     background-color: #eaeaea;
     width: 25%;
     border: 2px solid #fff;
+    vertical-align: middle;
 
     a {
       text-decoration: underline;
@@ -358,4 +359,8 @@ h3 {
 
 .epitaph {
   font-family: 'Palanquin Dark', sans-serif;
+}
+
+.inline-block {
+  display: inline-block;
 }
