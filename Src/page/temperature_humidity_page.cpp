@@ -1,7 +1,7 @@
-#include "bmp280_macros.hpp"
-#include "c_font.h"
-#include "page.hpp"
-#include "ssd1306.h"
+#include "japarimeter/bmp280_macros.hpp"
+#include "japarimeter/c_font.h"
+#include "japarimeter/page.hpp"
+#include "japarimeter/ssd1306.h"
 
 extern int32_t fixed_temperature;
 extern uint32_t fixed_humidity;

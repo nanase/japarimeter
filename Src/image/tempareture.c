@@ -1,4 +1,4 @@
-#include "c_image.h"
+#include "japarimeter/c_image.h"
 #include "stdint.h"
 
 static const uint8_t image_temperature_icon_data[59] = {

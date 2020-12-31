@@ -1,6 +1,6 @@
-#include "c_image.h"
+#include "japarimeter/c_image.h"
 
-#include "ssd1306.h"
+#include "japarimeter/ssd1306.h"
 
 extern SSD1306_t SSD1306;
 

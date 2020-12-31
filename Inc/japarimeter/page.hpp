@@ -21,12 +21,6 @@ class OpeningActPage : public Page {
   bool draw();
 };
 
-class PressurePage : public Page {
- protected:
-  void drawWholeScreen();
-  bool draw();
-};
-
 class TemperaturePage : public Page {
  protected:
   void drawWholeScreen();
@@ -39,7 +33,37 @@ class HumidityPage : public Page {
   bool draw();
 };
 
+class PressurePage : public Page {
+ protected:
+  void drawWholeScreen();
+  bool draw();
+};
+
 class TemperatureHumidityPage : public Page {
+ protected:
+  void drawWholeScreen();
+  bool draw();
+};
+
+class DIPage : public Page {
+ protected:
+  void drawWholeScreen();
+  bool draw();
+};
+
+class AltitudePage : public Page {
+ protected:
+  void drawWholeScreen();
+  bool draw();
+};
+
+class Version1Page : public Page {
+ protected:
+  void drawWholeScreen();
+  bool draw();
+};
+
+class Version2Page : public Page {
  protected:
   void drawWholeScreen();
   bool draw();

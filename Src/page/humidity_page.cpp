@@ -1,8 +1,8 @@
-#include "bmp280_macros.hpp"
-#include "c_font.h"
-#include "c_image.h"
-#include "page.hpp"
-#include "ssd1306.h"
+#include "japarimeter/bmp280_macros.hpp"
+#include "japarimeter/c_font.h"
+#include "japarimeter/c_image.h"
+#include "japarimeter/page.hpp"
+#include "japarimeter/ssd1306.h"
 
 extern uint32_t fixed_humidity;
 extern char buf[32];

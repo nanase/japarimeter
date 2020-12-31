@@ -1,7 +1,7 @@
-#include "c_font.h"
-#include "c_image.h"
-#include "page.hpp"
-#include "ssd1306.h"
+#include "japarimeter/c_font.h"
+#include "japarimeter/c_image.h"
+#include "japarimeter/page.hpp"
+#include "japarimeter/ssd1306.h"
 
 extern const CImage image_logo;
 

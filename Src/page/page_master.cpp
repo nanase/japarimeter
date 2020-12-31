@@ -1,4 +1,4 @@
-#include "page_master.hpp"
+#include "japarimeter/page_master.hpp"
 
 void PageMaster::initialize() {
   this->state = PageKind::openingAct;

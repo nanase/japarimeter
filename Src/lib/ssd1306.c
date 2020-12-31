@@ -1,4 +1,4 @@
-#include "ssd1306.h"
+#include "japarimeter/ssd1306.h"
 
 // Screenbuffer
 static uint8_t ssd1306_buffer[SSD1306_WIDTH * SSD1306_HEIGHT / 8];

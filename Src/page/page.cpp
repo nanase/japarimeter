@@ -1,7 +1,6 @@
-#include "page.hpp"
+#include "japarimeter/page.hpp"
 
-#include "fonts.h"
-#include "ssd1306.h"
+#include "japarimeter/ssd1306.h"
 
 void Page::initialize() {
   ssd1306_fill(ssd1306_black);

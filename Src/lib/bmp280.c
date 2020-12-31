@@ -26,7 +26,7 @@
  * THE SOFTWARE.
  */
 
-#include "bmp280.h"
+#include "japarimeter/bmp280.h"
 
 /**
  * BMP280 registers

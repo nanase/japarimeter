@@ -1,6 +1,6 @@
-#include "bmp280.h"
+#include "japarimeter/bmp280.h"
+#include "japarimeter/page_master.hpp"
 #include "main.h"
-#include "page_master.hpp"
 
 #if defined(STM32F303x8)
 extern TIM_HandleTypeDef htim6;
@@ -60,3 +60,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     button1_tick = tick;
   }
 }
+
+#if defined(STM32G031xx)
+void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin) {
+  HAL_GPIO_EXTI_Callback(GPIO_Pin);
+}
+
+void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin) {
+  HAL_GPIO_EXTI_Callback(GPIO_Pin);
+}
+#endif

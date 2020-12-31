@@ -1,6 +1,6 @@
-#include "c_font.h"
+#include "japarimeter/c_font.h"
 
-#include "ssd1306.h"
+#include "japarimeter/ssd1306.h"
 
 extern SSD1306_t SSD1306;
 

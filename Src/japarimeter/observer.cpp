@@ -1,14 +1,12 @@
 #include <stdlib.h>
 
-#include "bmp280.h"
-#include "bmp280_macros.hpp"
-#include "board_config.h"
-#include "c_font.h"
-#include "c_image.h"
-#include "flash.h"
+#include "japarimeter/bmp280.h"
+#include "japarimeter/bmp280_macros.hpp"
+#include "japarimeter/c_font.h"
+#include "japarimeter/c_image.h"
+#include "japarimeter/page_master.hpp"
+#include "japarimeter/ssd1306.h"
 #include "main.h"
-#include "page_master.hpp"
-#include "ssd1306.h"
 
 BMP280_HandleTypedef bmp280;
 char buf[32];
@@ -86,39 +84,6 @@ void setup() {
 #elif defined(STM32G031xx)
   HAL_TIM_Base_Start_IT(&htim16);
 #endif
-
-  BoardConfig config;
-  flash_read(CONFIG_PAGE, 0, &config, sizeof(BoardConfig));
-
-  if (config.magic_number != CONFIG_MAGICNUMBER) {
-    ssd1306_setFillMode(true);
-    ssd1306_fill(ssd1306_black);
-    ssd1306_setCursor(5, 5);
-    cFont_writeString(&font_16x26, "erase");
-    // ssd1306_writeString("erase", Font_16x26, ssd1306_white);
-    ssd1306_updateScreen();
-    HAL_Delay(1000);
-
-    flash_erase_page(CONFIG_PAGE);
-    config.magic_number = CONFIG_MAGICNUMBER;
-    config.count        = 0;
-    flash_write(CONFIG_PAGE, 0, &config, sizeof(BoardConfig));
-  } else {
-    config.count++;
-    flash_erase_page(CONFIG_PAGE);
-    flash_write(CONFIG_PAGE, 0, &config, sizeof(BoardConfig));
-  }
-
-  flash_read(CONFIG_PAGE, 0, &config, sizeof(BoardConfig));
-
-  ssd1306_setFillMode(true);
-  ssd1306_fill(ssd1306_black);
-  ssd1306_setCursor(5, 5);
-  sprintf(buf, "%d", config.count);
-  cFont_writeString(&font_16x26, buf);
-  // ssd1306_writeString(buf, Font_16x26, ssd1306_white);
-  ssd1306_updateScreen();
-  HAL_Delay(2000);
 
   pageMaster.initialize();
 }
