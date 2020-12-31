@@ -31,7 +31,7 @@ typedef struct {
 
 const PageInfo PageStates[] = {
   // 0: openingAct
-  { PageKind::none, PageKind::none, PageKind::none, PageKind::none, PageKind::version2 },
+  { PageKind::none, PageKind::none, PageKind::none, PageKind::none, PageKind::temperature },
 
   // 1: temperature
   { PageKind::version1, PageKind::humidity, PageKind::none, PageKind::none, PageKind::none },
@@ -54,7 +54,7 @@ const PageInfo PageStates[] = {
   // 7: version1
   { PageKind::version2, PageKind::temperature, PageKind::none, PageKind::none, PageKind::none },
 
-  // 7: version2
+  // 8: version2
   { PageKind::version1, PageKind::temperature, PageKind::none, PageKind::none, PageKind::none },
 };
 
