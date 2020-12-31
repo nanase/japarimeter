@@ -81,6 +81,22 @@ void PageMaster::changePage() {
       this->page = new PressurePage();
       break;
 
+    case PageKind::di:
+      this->page = new DIPage();
+      break;
+
+    case PageKind::altitude:
+      this->page = new AltitudePage();
+      break;
+
+    case PageKind::version1:
+      this->page = new Version1Page();
+      break;
+
+    case PageKind::version2:
+      this->page = new Version2Page();
+      break;
+
     default:
       break;
   }
