@@ -10,12 +10,6 @@
 
 BMP280_HandleTypedef bmp280;
 char buf[32];
-const uint8_t contrasts[5] = { 0x01, 0x10, 0x20, 0x40, 0x8f };
-uint8_t contrast_index     = 3;
-
-// int8_t page_index          = 0;
-// uint8_t old_page_index     = 0;
-// Page *page;
 
 PageMaster pageMaster;
 
@@ -39,7 +33,6 @@ void setup() {
   bmp280.i2c = &hi2c2;
 #endif
 
-  // bmp280.params.mode = BMP280_MODE_NORMAL;
   bmp280.params.filter                   = BMP280_FILTER_OFF;
   bmp280.params.oversampling_pressure    = BMP280_ULTRA_LOW_POWER;
   bmp280.params.oversampling_temperature = BMP280_ULTRA_LOW_POWER;
@@ -47,10 +40,9 @@ void setup() {
   bmp280.params.standby                  = BMP280_STANDBY_125;
 
   ssd1306_initialize();
+  ssd1306_setContrast(0x40);
   ssd1306_fill(ssd1306_black);
   ssd1306_updateScreen();
-
-  uint16_t error = 1;
 
   do {
     if (!bmp280_init(&bmp280, &bmp280.params))
@@ -68,12 +60,14 @@ void setup() {
 
     ssd1306_setFillMode(true);
     ssd1306_setCursor(0, 0);
-    sprintf(buf, "error %d", error++);
-    cFont_writeString(&font_11x18, buf);
-    ssd1306_setCursor(0, 18);
-    sprintf(buf, "%ld", fixed_pressure);
-    cFont_writeString(&font_11x18, buf);
+    cFont_writeString(&font_7x10, "Error:");
+    ssd1306_setFillMode(false);
+    ssd1306_setCursor(1, 0);
+    cFont_writeString(&font_7x10, "Error:");
 
+    ssd1306_setFillMode(true);
+    ssd1306_setCursor(0, 11);
+    cFont_writeString(&font_7x10, "Sensor connection");
     ssd1306_updateScreen();
 
     HAL_Delay(1000);
@@ -89,38 +83,6 @@ void setup() {
 }
 
 void loop() {
-  ssd1306_setContrast(contrasts[contrast_index]);
-
-  // if (page_index != old_page_index) {
-  //   delete page;
-
-  //   switch (page_index) {
-  //     case 0:
-  //       page = new TemperatureHumidityPage();
-  //       break;
-
-  //     case 1:
-  //       page = new HumidityPage();
-  //       break;
-
-  //     case 2:
-  //       page = new TemperaturePage();
-  //       break;
-
-  //     case 3:
-  //       page = new PressurePage();
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-
-  //   old_page_index = page_index;
-  //   page->initialize();
-  // } else {
-  //   page->update();
-  // }
-
   pageMaster.update();
 
   HAL_Delay(250);
