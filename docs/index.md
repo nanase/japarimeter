@@ -46,7 +46,7 @@ JapariMeter は手のひらサイズで動く温湿度気圧計です。ボタ�
       </td>
       <td>
         <img src="{{site.baseurl}}/assets/img/display/altitude.png" /><br />
-        高度
+        推定高度
       </td>
     </tr>
   </tbody>
