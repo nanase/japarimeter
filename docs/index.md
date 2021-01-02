@@ -229,6 +229,16 @@ JapariMeter は手のひらサイズで動く温湿度気圧計です。ボタ�
         These fonts are licensed under the <a href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL" target="_blank">Open Font License</a>.
       </td>
     </tr>
+    <tr>
+      <th>
+        <a href="https://fonts.google.com/specimen/Lato#about" target="_blank">Lato</a><br />
+        <span class="foot-note">by Łukasz Dziedzic</span>
+      </th>
+      <td>
+        <span class="foot-note">Font for Text on board</span><br />
+        These fonts are licensed under the <a href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL" target="_blank">Open Font License</a>.
+      </td>
+    </tr>
   </tbody>
 </table>
 
