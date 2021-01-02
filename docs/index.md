@@ -53,7 +53,7 @@ JapariMeter は手のひらサイズで動く温湿度気圧計です。ボタ�
 </table>
 
 <div class="no-image-border text-center center-table foot-note" style="max-width: 600px">
-  <img class="no-image-border width-100p rounded-img" src="{{site.baseurl}}/assets/img/rev1_bottom.jpg" /><br />
+  <a href="{{site.baseurl}}/assets/img/rev1_bottom.jpg"><img class="no-image-border width-100p rounded-img" src="{{site.baseurl}}/assets/img/rev1_bottom.jpg" /></a><br />
   ボタン型電池 1 個使用
 </div>
 
@@ -64,7 +64,7 @@ JapariMeter は手のひらサイズで動く温湿度気圧計です。ボタ�
 - 情報表示ボタン：公式サイトへのリンク、バージョン表記ページに切り替わります。
 
 <div class="no-image-border text-center center-table" style="max-width: 600px">
-  <img class="no-image-border less-padding width-100p rounded-img" src="{{site.baseurl}}/assets/img/rev1_inputs.jpg" />
+  <a href="{{site.baseurl}}/assets/img/rev1_inputs.jpg"><img class="no-image-border less-padding width-100p rounded-img" src="{{site.baseurl}}/assets/img/rev1_inputs.jpg" /></a>
 </div>
 
 ## 使用上の注意
