@@ -16,7 +16,7 @@ extern const CImage image_di_face4;
 void DIPage::drawWholeScreen() {
   ssd1306_setFillMode(true);
 
-  ssd1306_setCursor(73, 11);
+  ssd1306_setCursor(83, 11);
   cFont_writeString(&font_11x18, ".");
 }
 
@@ -54,11 +54,11 @@ bool DIPage::draw() {
   }
 
   ssd1306_setFillMode(true);
-  ssd1306_setCursor(27, NumberYPosition);
+  ssd1306_setCursor(37, NumberYPosition);
   sprintf(buf, "%3d", (uint8_t)di);
   cFont_writeString(&font_16x26, buf);
 
-  ssd1306_setCursor(80, NumberYPosition);
+  ssd1306_setCursor(90, NumberYPosition);
   sprintf(buf, "%02d", (int8_t)((di - (int16_t)di) * 100));
   cFont_writeString(&font_16x26, buf);
 
