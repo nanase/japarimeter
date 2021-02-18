@@ -28,20 +28,7 @@ bool DIPage::draw() {
   float di          = 0.81 * temperature + 0.01 * humidity * (0.99 * temperature - 14.3) + 46.3;
 
   ssd1306_setFillMode(true);
-  ssd1306_setCursor(4, 4);
-
-  if (di < 70.0) {
-    cImage_write(&image_di_face1);
-  } else if (di < 75.0) {
-    cImage_write(&image_di_face2);
-  } else if (di < 80.0) {
-    cImage_write(&image_di_face3);
-  } else {
-    cImage_write(&image_di_face4);
-  }
-
-  ssd1306_setFillMode(false);
-  ssd1306_setCursor(3, 4);
+  ssd1306_setCursor(4, 0);
 
   if (di < 70.0) {
     cImage_write(&image_di_face1);
