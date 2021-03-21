@@ -286,6 +286,7 @@ JapariMeter は手のひらサイズで動く温湿度気圧計です。ボタ�
 ## 製作・制作
 
 - 基板設計・実装・プログラム開発：七瀬 [@nanase_coder](https://twitter.com/nanase_coder)
+- ディスプレイイメージ協力：kachin さん [@kachin397](https://twitter.com/kachin397)
 - スペシャルサンクス：スティルマンさん [@lp_stillman](https://twitter.com/lp_stillman)
 
 <p class="text-center margin-50 epitaph">Designed by Nanase, Fabricated in <span class="small-caps">JapariPark</span></p>
