@@ -2,6 +2,7 @@
 
 #include "japarimeter/bmp280.h"
 #include "japarimeter/bmp280_macros.hpp"
+#include "japarimeter/button.hpp"
 #include "japarimeter/c_font.h"
 #include "japarimeter/c_image.h"
 #include "japarimeter/page_master.hpp"
@@ -12,6 +13,7 @@ BMP280_HandleTypedef bmp280;
 char buf[32];
 
 PageMaster pageMaster;
+Button buttonA, buttonB;
 
 int32_t fixed_temperature;
 uint32_t fixed_pressure;
@@ -83,7 +85,22 @@ void setup() {
 }
 
 void loop() {
-  pageMaster.update();
+  static uint8_t count = 0;
+  uint32_t tick        = HAL_GetTick();
 
-  HAL_Delay(250);
+  if (buttonA.checkLongPressed(tick))
+    pageMaster.longPressAButton();
+  else if (buttonA.checkClicked())
+    pageMaster.pressAButton();
+
+  if (buttonB.checkLongPressed(tick))
+    pageMaster.longPressBButton();
+  else if (buttonB.checkClicked())
+    pageMaster.pressBButton();
+
+  if (++count > 250) {
+    pageMaster.update();
+  }
+
+  HAL_Delay(1);
 }
