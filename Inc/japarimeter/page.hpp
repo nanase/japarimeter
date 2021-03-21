@@ -10,6 +10,22 @@ class Page {
   void initialize();
   bool update();
 
+  virtual bool onPressButtonA() {
+    return true;
+  }
+
+  virtual bool onPressButtonB() {
+    return true;
+  }
+
+  virtual bool onLongPressButtonA() {
+    return true;
+  }
+
+  virtual bool onLongPressButtonB() {
+    return true;
+  }
+
  protected:
   virtual void drawWholeScreen() = 0;
   virtual bool draw()            = 0;

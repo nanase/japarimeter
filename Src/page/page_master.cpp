@@ -5,43 +5,51 @@ void PageMaster::initialize() {
   this->changePage();
 }
 
-void PageMaster::pressMenuButton() {
-  int8_t stateIndex = static_cast<int8_t>(this->state);
-  PageKind nextKind = PageStates[stateIndex].pressMenu;
+void PageMaster::pressAButton() {
+  if (this->page->onPressButtonA()) {
+    int8_t stateIndex = static_cast<int8_t>(this->state);
+    PageKind nextKind = PageStates[stateIndex].pressA;
 
-  if (nextKind != PageKind::none) {
-    this->state = nextKind;
-    this->changePage();
+    if (nextKind != PageKind::none) {
+      this->state = nextKind;
+      this->changePage();
+    }
   }
 }
 
-void PageMaster::pressNextButton() {
-  int8_t stateIndex = static_cast<int8_t>(this->state);
-  PageKind nextKind = PageStates[stateIndex].pressNext;
+void PageMaster::pressBButton() {
+  if (this->page->onPressButtonB()) {
+    int8_t stateIndex = static_cast<int8_t>(this->state);
+    PageKind nextKind = PageStates[stateIndex].pressB;
 
-  if (nextKind != PageKind::none) {
-    this->state = nextKind;
-    this->changePage();
+    if (nextKind != PageKind::none) {
+      this->state = nextKind;
+      this->changePage();
+    }
   }
 }
 
-void PageMaster::longPressMenuButton() {
-  int8_t stateIndex = static_cast<int8_t>(this->state);
-  PageKind nextKind = PageStates[stateIndex].longPressMenu;
+void PageMaster::longPressAButton() {
+  if (this->page->onLongPressButtonA()) {
+    int8_t stateIndex = static_cast<int8_t>(this->state);
+    PageKind nextKind = PageStates[stateIndex].longPressA;
 
-  if (nextKind != PageKind::none) {
-    this->state = nextKind;
-    this->changePage();
+    if (nextKind != PageKind::none) {
+      this->state = nextKind;
+      this->changePage();
+    }
   }
 }
 
-void PageMaster::longPressNextButton() {
-  int8_t stateIndex = static_cast<int8_t>(this->state);
-  PageKind nextKind = PageStates[stateIndex].longPressNext;
+void PageMaster::longPressBButton() {
+  if (this->page->onLongPressButtonB()) {
+    int8_t stateIndex = static_cast<int8_t>(this->state);
+    PageKind nextKind = PageStates[stateIndex].longPressB;
 
-  if (nextKind != PageKind::none) {
-    this->state = nextKind;
-    this->changePage();
+    if (nextKind != PageKind::none) {
+      this->state = nextKind;
+      this->changePage();
+    }
   }
 }
 
