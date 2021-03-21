@@ -22,10 +22,10 @@ enum class PageKind : int8_t {
 };
 
 typedef struct {
-  PageKind pressMenu;
-  PageKind pressNext;
-  PageKind longPressMenu;
-  PageKind longPressNext;
+  PageKind pressA;
+  PageKind pressB;
+  PageKind longPressA;
+  PageKind longPressB;
   PageKind nextPage;
 } PageInfo;
 
@@ -62,11 +62,11 @@ class PageMaster {
  public:
   void initialize();
 
-  void pressMenuButton();
-  void pressNextButton();
+  void pressAButton();
+  void pressBButton();
 
-  void longPressMenuButton();
-  void longPressNextButton();
+  void longPressAButton();
+  void longPressBButton();
 
   void update();
 
