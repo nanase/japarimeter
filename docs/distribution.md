@@ -21,7 +21,7 @@ subpages:
           2021.04.04 (日)<br />
           11:00-15:00<br />
           <a href="https://friendsihoo.tumblr.com/" target="_blank">フレンズチホー15</a><br />
-          <span class="foot-note">(東京ビッグサイト 西ホール)</span>
+          <span class="foot-note">(東京ビッグサイト 西3ホール)</span>
         </p>
         <p>
           「けもフレ電子工作部」<br />
